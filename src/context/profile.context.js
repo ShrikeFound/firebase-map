@@ -7,7 +7,6 @@ export const ProfileProvider = ({children}) =>{
     const [profile,setProfile] = useState(null);
     const [isLoading,setIsLoading] = useState(true)
 
-
     useEffect(() =>{
 
         let userRef;
@@ -24,6 +23,7 @@ export const ProfileProvider = ({children}) =>{
                         uid: authObj.uid,
                         email: authObj.email
                     }
+                    console.log(data)
                     setIsLoading(false)
                     setProfile(data)
                 })
@@ -52,7 +52,7 @@ export const ProfileProvider = ({children}) =>{
 
 
     return (
-        <ProfileContext.Provider value={profile,isLoading}>
+        <ProfileContext.Provider value={{profile,isLoading}}>
             {children}
         </ProfileContext.Provider>
     )
