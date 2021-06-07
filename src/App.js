@@ -6,14 +6,19 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { ProfileProvider } from './context/profile.context';
 import Header from './components/Header';
+import World from './pages/World';
 function App() {
   return (
     <ProfileProvider>
       <Header/>
       <Switch>
-        <PrivateRoute exact path = "/">
+        <PrivateRoute path = "/worlds/:id">
+          <World/>
+        </PrivateRoute>
+        <PrivateRoute exact path="/">
           <Home/>
         </PrivateRoute>
+        
         <PublicRoute path="/signin">
           <Signin/>
         </PublicRoute>

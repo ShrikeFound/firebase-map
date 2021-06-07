@@ -1,12 +1,15 @@
 import { useContext } from 'react'
 import {Route,Redirect} from 'react-router-dom'
 import { useProfile } from '../context/profile.context'
-const PrivateRoute = ({children,...rest}) => {
+const PrivateRoute = ({ children, ...rest }) => {
+    
     const {profile,isLoading} = useProfile();
-    if (isLoading && !profile){
+    
+    if (isLoading && !profile) {
         return <div>loading...</div>
+
     }
-    else if (!profile && !isLoading){
+    else if (!profile && !isLoading) {
         return <Redirect to="/signin"/>
     }
     return (

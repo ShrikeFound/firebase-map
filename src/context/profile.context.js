@@ -23,9 +23,8 @@ export const ProfileProvider = ({children}) =>{
                         uid: authObj.uid,
                         email: authObj.email
                     }
-                    console.log(data)
-                    setIsLoading(false)
                     setProfile(data)
+                    setIsLoading(false)
                 })
 
 

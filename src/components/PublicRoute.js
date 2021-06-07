@@ -1,10 +1,8 @@
 import {Route,Redirect} from 'react-router-dom'
 import { useProfile } from '../context/profile.context';
 const PublicRoute = ({children,...rest}) => {
-    console.log("public route:")
-    const {profile,isLoading} = useProfile();
-    console.log(profile)
-    console.log(isLoading)
+    const { profile, isLoading } = useProfile();
+            console.log("visiting public route.")
     if (isLoading && !profile){
         return <div>loading...</div>
     }else if(profile && !isLoading){
