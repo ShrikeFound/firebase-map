@@ -23,7 +23,7 @@ const Signin = () => {
     const handleDemoLogin = async () =>{
 
         try{
-            const {additionalUserInfo,user} = await auth.signInWithEmailAndPassword("demo@mail.com","QUt3crAnEAYcvZoFUS8il6S47FV2");
+            const { additionalUserInfo, user } = await auth.signInWithEmailAndPassword("demo@mail.com", "gWOQ2S3JfVgg");
         }catch(err){
             console.log(err.message)
         }
