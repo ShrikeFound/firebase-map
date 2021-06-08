@@ -1,1 +1,10 @@
-@import 'reset.scss'
+@import 'reset.scss';
+
+body,html{
+    color: white;
+    background-color: #444;
+}
+
+a:visited{
+    color: yellow;
+}

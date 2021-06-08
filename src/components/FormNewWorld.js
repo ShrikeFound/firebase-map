@@ -11,19 +11,6 @@ const FormNewWorld = () => {
     data[e.target.name] = e.target.value
     setFormData(data)
   }
- 
-  // const setImage = async (e) => {
-  //   const file = e.target.files[0]
-  //   let newformData = { ...formData }
-  //   const id = uuid();
-  //   const storageRef = storage.ref();
-  //   const imagesRef = storageRef.child('images').child(id);
-  //   await imagesRef.put(file)
-  //   const imageURL = await imagesRef.getDownloadURL();
-  //   newformData["imageURL"] = imageURL
-  //   setFormData(newformData)
-  //   console.log(newformData)
-  // }
 
   const createWorld = async (e) => {
 
