@@ -11,10 +11,11 @@ const Home = () => {
     const [worlds, setWorlds] = useState([])
     useEffect(() => {
         const getWorlds = async () => {
-            const userRef = await database.ref(`profiles/${profile.uid}/worlds`).get()
-        const worlds = await userRef.val();
+          const userRef = await database.ref(`profiles/${profile.uid}/worlds`).get()
+          const worlds = await userRef.val();
+          
 
-        setWorlds(worlds)
+        setWorlds(worlds || [])
         setIsLoading(false)
         }
         getWorlds();
