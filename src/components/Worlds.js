@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 
 const Worlds = ({ worlds }) => {
   return (
-    <div>
+    <ul>
     {
       Object.keys(worlds).map((key) => {
-        return <Link to={`/worlds/${key}`}key={key}>{worlds[key]["name"]}</Link>
+        return <li key={key} ><Link to={`/worlds/${key}`}className="world-thumbnail">{worlds[key]["name"]}</Link></li>
       })
 
       
     }
-  </div> );
+  </ul> );
 }
  
 export default Worlds;

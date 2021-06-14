@@ -2,22 +2,30 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { database, storage } from "../misc/firebase";
 import { v4 as uuid } from 'uuid'
+import Map from "../components/Map";
 const World = () => {
   const [world, setWorld] = useState(null);
+  const [nodes, setNodes] = useState(null)
   const [isLoading, setIsLoading] = useState(true);
+  const [drawMode,setDrawMode] = useState(false) 
   const imageRef = useRef();
   const {id} = useParams();
   console.log(world)
-  useEffect(() =>{
-    const getWorld = async () =>{
-      const worldRef = await database.ref(`worlds/${id}`).get();
-      const worldInfo = await worldRef.val();
-      
-      setWorld(worldInfo);
-      setIsLoading(false);
-    }
+    
+  const getWorld = async () => {
+    const worldRef = await database.ref(`worlds/${id}`).get();
+    const worldInfo = await worldRef.val();
+    const nodesRef = await database.ref(`nodes/${id}`).get();
+    const nodesInfo = await nodesRef.val();
+    setWorld(worldInfo);
+    setNodes(nodesInfo);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+
     getWorld();
-  },[])
+  },[id])
 
     const setImage = async () => {
     const file = imageRef.current.files[0]
@@ -38,6 +46,13 @@ const World = () => {
   }
 
 
+  const toggleDrawMode = () => {
+    if (drawMode === false) {
+      setDrawMode(true)
+    } else {
+      setDrawMode(false)
+    }
+  }
 
   if(isLoading){
     return (
@@ -52,15 +67,15 @@ const World = () => {
   }
 
   return ( 
-    <div>
+    <div className="container">
+      <Map world={world} drawMode={drawMode} id={id} nodes={nodes} rerender={getWorld} />
       <h1>{world.name}</h1>
       
       <label htmlFor="worldMap">Map Image</label>
       <input id="worldMap" ref={imageRef}type="file" accept="image/*" />
-      {
-      world.mapImageURL ? <img src={world.mapImageURL}/>: "Please upload an Image"
-      }
       <button onClick={setImage}> Upload Image</button>
+      <button onClick={toggleDrawMode}>{drawMode ? "View" : "Draw"}</button>
+
     </div>
    );
 

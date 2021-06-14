@@ -1,10 +1,38 @@
-@import 'reset.scss';
+@import "reset.scss";
 
-body,html{
-    color: white;
-    background-color: #444;
+body,
+html {
+  color: white;
+  background-color: #444;
+  width: 100%;
+  height: 100%;
 }
 
-a:visited{
-    color: yellow;
+a:visited {
+  color: yellow;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.map-container {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  border: 3px solid green;
+  padding: 1rem;
+}
+
+.svg-map {
+  border: 3px solid orange;
+  height: 100%;
+  width: 100%;
+  &:hover {
+    fill: red;
+  }
+}
+.svg-node:hover {
+  fill: green;
 }

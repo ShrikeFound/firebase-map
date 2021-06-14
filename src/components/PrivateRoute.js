@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import {Route,Redirect} from 'react-router-dom'
 import { useProfile } from '../context/profile.context'
 const PrivateRoute = ({ children, ...rest }) => {

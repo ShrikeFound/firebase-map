@@ -2,9 +2,10 @@ import { useRef, useState } from "react";
 import { useProfile } from "../context/profile.context";
 import { database, storage } from "../misc/firebase";
 import { v4 as uuid } from 'uuid'
-const FormNewWorld = () => {
+const FormNewWorld = ({ reloadFunction }) => {
   const { profile } = useProfile();
-  const [formData, setFormData] = useState({ name: "", mapWidth: 0, mapHeight: 0, user_id: profile.uid });
+  const defaultFormData = { name: "", mapWidth: 0, mapHeight: 0, user_id: profile.uid }
+  const [formData, setFormData] = useState(defaultFormData);
   
   const setValue = (e) => {
     let data = { ...formData }
@@ -15,11 +16,13 @@ const FormNewWorld = () => {
   const createWorld = async (e) => {
 
     e.preventDefault();
-    
+    console.log("submitting")
     const newWorldRef = await database.ref(`worlds`).push();
     newWorldRef.set(formData)
     const userRef = await database.ref(`profiles/${profile.uid}/worlds`)
-    userRef.child(newWorldRef.key).set({name: formData.name})
+    userRef.child(newWorldRef.key).set({ name: formData.name })
+    setFormData(defaultFormData)
+    reloadFunction();
   }
 
 

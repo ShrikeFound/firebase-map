@@ -18,6 +18,9 @@ function App() {
         <PrivateRoute exact path="/">
           <Home/>
         </PrivateRoute>
+        <PrivateRoute path = "/worlds">
+          <Home/>
+        </PrivateRoute>
         
         <PublicRoute path="/signin">
           <Signin/>
